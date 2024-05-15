@@ -194,12 +194,26 @@ getAnimal(catto)
 class BankAccount {
     id: number;
     name: string;
-    private balance: number;
+    private _balance: number;
 
     constructor(id: number, name: string, balance: number){
         this.name = name,
         this. id = id
-        this. balance = balance
+        this. _balance = balance
+    }
+
+    // gettter
+    get balance(): number {
+        return this._balance
+    }
+
+    // setter
+    set deposit(amount: number) {
+        this._balance = this.balance + amount
+    }
+
+    addDeposit(amount: number){
+       return this._balance = this._balance + amount
     }
 }
 
@@ -209,3 +223,26 @@ class BankAccount {
 const myaccount = new BankAccount (444, 'persian', 20)
 
 console.log(myaccount)
+myaccount.deposit = 30
+myaccount.addDeposit(10)
+console.log(myaccount.balance);
+
+// static in class
+class Counter {
+    static counter: number = 0;
+    // constructor(counter: number){
+    //     this.counter = counter
+    // }
+    static increment(): number{
+        return Counter.counter = Counter.counter + 1
+    }
+
+    static decrement(): number {
+        return Counter.counter = Counter.counter - 1
+    }
+}
+
+// const instance1 = new Counter()
+// const instance2 = new Counter()
+console.log(Counter.increment()); // 0-1
+console.log(Counter.increment()); // 1-2
