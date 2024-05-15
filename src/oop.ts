@@ -321,3 +321,72 @@ function getAreaOfShape(param: Shape) {
 
 getAreaOfShape(new Circle(10))
 getAreaOfShape(new Rectangle(10, 10))
+
+
+// Abstraction
+
+// 1st way of using abstraction by interface
+
+// interface IVehicle {
+//     name: string;
+//     model: string;
+// }
+
+// const vehicle: IVehicle = {
+//     name: "car",
+//     model: "2000"
+// }
+
+interface IVehicle {
+    startEn(): void;
+    stopEn(): void;
+    move(): void;
+}
+
+class Vehicle implements IVehicle {
+
+    constructor(
+        public name: string, 
+        public brand: string, 
+        public model: number
+    ){}
+
+    startEn(): void {
+        console.log('I am starting engine');
+    }
+    stopEn(): void {
+        console.log('I am stopping engine');
+    }
+    move(): void{
+        console.log('I am moving engine');
+    }
+}
+
+const vehicle1 = new Vehicle("car", "toyota", 2000)
+
+
+
+//2nd way of using abstract class
+abstract class Vehicle2 implements IVehicle {
+
+    constructor(
+        public name: string, 
+        public brand: string, 
+        public model: number
+    ){}
+
+    abstract startEn(): void 
+    abstract stopEn(): void 
+    move(): void {
+        console.log("I am moving class");
+    }
+}
+
+class CarVehicle extends Vehicle2 {
+    startEn(): void {
+        console.log('I am starting engine');
+    }
+    stopEn(): void {
+        console.log('I am stopping engine');
+    }
+}
