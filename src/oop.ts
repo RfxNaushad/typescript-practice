@@ -177,7 +177,7 @@ function isDog(animal: Animal3): animal is Dog {
 function getAnimal(animal: Animal3){
    if(isDog(animal)){
     animal.makeBark();
-   } else if(animal instanceof Cat){ // 1st way
+   } else if(animal instanceof Cat){ // 1st way of using guard
     animal.makeMew()
    } else{
     animal.makeSound()
@@ -246,3 +246,78 @@ class Counter {
 // const instance2 = new Counter()
 console.log(Counter.increment()); // 0-1
 console.log(Counter.increment()); // 1-2
+
+
+// Polymorphism ---- different value of method from classes
+
+class Person2 {
+    takeNap(): void{
+        console.log("I am sleeping 8 hours per day");
+    }
+}
+
+class Student2 extends Person2 {
+    takeNap(): void {
+        console.log("I am sleeping 10 hours per day");
+    }
+}
+
+class Developer extends Person2 {
+    takeNap(): void {
+        console.log("I am sleeping 5 hours per day");
+    }
+}
+
+function getNap(param: Person2){
+    param.takeNap();
+}
+
+const p1 = new Person2()
+const p22 = new Student2()
+const p3 = new Developer()
+
+getNap(p1)
+getNap(p22)
+getNap(p3)
+
+
+
+// another example
+class Shape{
+    getArea(): number{
+        return 0
+    }
+}
+
+class Circle extends Shape{
+    radius: number
+    constructor(radius: number){
+        super()
+        this.radius = radius
+    }
+
+    getArea(): number {
+        return Math.PI * this.radius * this.radius;
+    }
+}
+
+class Rectangle extends Shape {
+    height: number;
+    width: number;
+    constructor(height: number, width: number){
+        super()
+        this.height = height
+        this.width = width
+    }
+
+    getArea(): number {
+        return this.height * this.width
+    }
+}
+
+function getAreaOfShape(param: Shape) {
+ console.log(param.getArea());
+}
+
+getAreaOfShape(new Circle(10))
+getAreaOfShape(new Rectangle(10, 10))
