@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only src/advance.ts"
+    "start": "ts-node-dev --respawn --transpile-only src/oop.ts"
   },
   "devDependencies": {
     "nodemon": "^3.1.0",
